@@ -1,5 +1,12 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import AddCurrency from 'src/components/AddCurrency';
 import ListItem from 'src/components/ListItem';
@@ -41,14 +48,12 @@ const Home = ({navigation}) => {
     dispatch(removeSingleCryptoAction(item));
   };
   const onRefresh = () => {
-    console.log('onRefresh***');
-
     dispatch(updateSelectedCurrenciesAction());
   };
 
   return (
     <View style={styles.container}>
-      {console.log(isFetching, 'isFetching***')}
+      <StatusBar backgroundColor={'rgb(56,87,117)'} />
       <FlatList
         data={selectedCurrencies}
         refreshing={isFetching}

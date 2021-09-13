@@ -24,7 +24,6 @@ const fetchCryptoAction = symbol => async (dispatch, getState) => {
   } catch (err) {
     // snackBar({text: 'This cryptoCurrency does not exist!'});
     errorHelper(err?.response?.status);
-    console.log(err?.response?.status, 'fetchCryptoAction err');
   }
   dispatch(requestFinished());
 };

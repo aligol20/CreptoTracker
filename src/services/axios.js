@@ -8,7 +8,6 @@ export const axiosGet = async ({api, data = null}) => {
     data: data,
     url: BASE_URL + api,
   };
-  console.log(options, '*****');
 
   return axios(options);
 };

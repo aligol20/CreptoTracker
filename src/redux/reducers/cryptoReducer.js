@@ -13,12 +13,9 @@ export const cryptoSlice = createSlice({
       state.selectedCurrencies = action.payload;
     },
     requestStarted: (state, action) => {
-      console.log('list request');
       state.isFetching = true;
     },
     requestFinished: (state, action) => {
-      console.log('update finished');
-
       state.isFetching = false;
     },
     setSymbol: (state, action) => {

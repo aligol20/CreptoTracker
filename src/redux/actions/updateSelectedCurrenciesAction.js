@@ -8,7 +8,6 @@ const {selectedCryptoList, requestStarted, requestFinished} =
 
 const updateSelectedCurrenciesAction = () => async (dispatch, getState) => {
   dispatch(requestStarted());
-  console.log('refreshCryptoListRequest');
 
   try {
     const {selectedCurrencies} = getState().crypto || {};
@@ -31,11 +30,8 @@ const updateSelectedCurrenciesAction = () => async (dispatch, getState) => {
         );
       }
     }
-    console.log('refreshCryptoListFinished');
   } catch (err) {
     errorHelper(err?.response?.status);
-
-    console.log(err, 'updateSelectedCurrenciesAction err');
   }
   dispatch(requestFinished());
 };

@@ -24,7 +24,6 @@ const AddCrypto = () => {
     dispatch(setSymbolAction(event));
   };
   const onAdd = () => {
-    console.log(symbol, 'symbol symbol');
     dispatch(fetchCryptoAction(symbol));
   };
   return (
