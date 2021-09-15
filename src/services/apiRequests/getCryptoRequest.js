@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import {CRYPTO_LIST_API} from 'src/consts/api';
 import {axiosGet} from '../axios';
 
 const getCryptoRequest = (api, currencyName) => {

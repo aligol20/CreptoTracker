@@ -1,9 +1,9 @@
 import {SINGLE_CURRENCY_API} from 'src/consts/api';
 import getCryptoRequest from 'src/services/apiRequests/getCryptoRequest';
-import snackBar from 'src/utils/snackBar';
-import addNewCurrencyAction from './addNewCurrencyAction';
-import {cryptoSlice} from '../reducers/cryptoReducer';
 import errorHelper from 'src/utils/errorHandler';
+import {cryptoSlice} from '../reducers/cryptoReducer';
+import addNewCurrencyAction from './addNewCurrencyAction';
+import PropTypes from 'prop-types';
 
 const {requestStarted, requestFinished} = cryptoSlice.actions;
 const fetchCryptoAction = symbol => async (dispatch, getState) => {
@@ -22,10 +22,13 @@ const fetchCryptoAction = symbol => async (dispatch, getState) => {
       }
     }
   } catch (err) {
-    // snackBar({text: 'This cryptoCurrency does not exist!'});
     errorHelper(err?.response?.status);
   }
   dispatch(requestFinished());
 };
 
 export default fetchCryptoAction;
+
+fetchCryptoAction.propTypes = {
+  symbol: PropTypes.string.isRequired,
+};

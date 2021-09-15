@@ -14,10 +14,11 @@ import removeSingleCryptoAction from 'src/redux/actions/removeSingleCryptoAction
 import updateSelectedCurrenciesAction from 'src/redux/actions/updateSelectedCurrenciesAction';
 
 const Home = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const [editMode, setEditMode] = useState(false);
 
+  const dispatch = useDispatch();
+
+  // refetching the cryptoCurrency changes when component didMount
   useEffect(async () => {
     dispatch(updateSelectedCurrenciesAction());
   }, []);
@@ -26,6 +27,7 @@ const Home = ({navigation}) => {
     selectedCurrencies: state.crypto.selectedCurrencies,
     isFetching: state.crypto.isFetching,
   }));
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -37,16 +39,21 @@ const Home = ({navigation}) => {
       ),
     });
   }, [editMode]);
+
+  // enable Edit Mode
   const onEdit = () => {
     setEditMode(!editMode);
   };
+  // navigates to add a new CryptoCurrency
   const onNewCurrency = () => {
     navigation.navigate('AddCrypto', {});
   };
 
+  // will called when user touches trash icon on each item
   const onRemoveItem = item => {
     dispatch(removeSingleCryptoAction(item));
   };
+  // force to reFetch crypto changes
   const onRefresh = () => {
     dispatch(updateSelectedCurrenciesAction());
   };

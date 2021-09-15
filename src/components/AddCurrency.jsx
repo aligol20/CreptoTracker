@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, Text, StyleSheet, View} from 'react-native';
 import {verticalScale} from 'src/utils/scale';
 import Icon from 'react-native-vector-icons/Feather';
+import PropTypes from 'prop-types';
 
 const AddCurrency = ({onNewCurrency}) => {
   return (
@@ -15,6 +16,10 @@ const AddCurrency = ({onNewCurrency}) => {
   );
 };
 export default AddCurrency;
+
+AddCurrency.propTypes = {
+  onNewCurrency: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   addNew: {

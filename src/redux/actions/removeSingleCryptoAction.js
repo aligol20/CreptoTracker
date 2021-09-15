@@ -1,4 +1,5 @@
 import {cryptoSlice} from '../reducers/cryptoReducer';
+import PropTypes from 'prop-types';
 
 const {selectedCryptoList} = cryptoSlice.actions;
 
@@ -14,3 +15,7 @@ const removeSingleCryptoAction =
   };
 
 export default removeSingleCryptoAction;
+
+removeSingleCryptoAction.propTypes = {
+  cryptoDetails: PropTypes.object.isRequired,
+};

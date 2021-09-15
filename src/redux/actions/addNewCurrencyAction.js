@@ -1,7 +1,7 @@
-import {useNavigation} from '@react-navigation/core';
 import snackBar from 'src/utils/snackBar';
 import {cryptoSlice} from '../reducers/cryptoReducer';
 import updateSelectedCurrenciesAction from './updateSelectedCurrenciesAction';
+import PropTypes from 'prop-types';
 
 const {selectedCryptoList, setSymbol} = cryptoSlice.actions;
 
@@ -24,3 +24,7 @@ const addNewCurrencyAction = cryptoDetails => async (dispatch, getState) => {
 };
 
 export default addNewCurrencyAction;
+
+addNewCurrencyAction.propTypes = {
+  cryptoDetails: PropTypes.object.isRequired,
+};

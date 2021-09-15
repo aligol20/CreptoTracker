@@ -1,4 +1,5 @@
 import snackBar from './snackBar';
+import PropTypes from 'prop-types';
 
 const errorHelper = status => {
   switch (status) {
@@ -25,3 +26,7 @@ const errorHelper = status => {
   }
 };
 export default errorHelper;
+
+errorHelper.propTypes = {
+  status: PropTypes.number.isRequired,
+};

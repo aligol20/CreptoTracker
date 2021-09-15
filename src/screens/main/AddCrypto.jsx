@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  View,
+  ActivityIndicator,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
+  View,
 } from 'react-native';
-import {useSelector} from 'react-redux';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import fetchCryptoAction from 'src/redux/actions/fetchCryptoAction';
 import setSymbolAction from 'src/redux/actions/setSymbolAction';
 import {verticalScale} from 'src/utils/scale';
@@ -18,11 +17,13 @@ const AddCrypto = () => {
     symbol: state.crypto.symbol,
     isFetching: state.crypto.isFetching,
   }));
+
   const dispatch = useDispatch();
 
   const onSymbolChanges = event => {
     dispatch(setSymbolAction(event));
   };
+
   const onAdd = () => {
     dispatch(fetchCryptoAction(symbol));
   };

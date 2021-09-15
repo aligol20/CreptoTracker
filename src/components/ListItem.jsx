@@ -10,6 +10,11 @@ import {
 import fixNumber from 'src/utils/fixNumber';
 import {scale} from 'src/utils/scale';
 import Icon from 'react-native-vector-icons/Feather';
+import PropTypes from 'prop-types';
+import {ICON_API} from 'src/consts/api';
+
+const DURATION = 500;
+const NATIVE_DRIVER = false;
 
 const ListItem = ({item, editMode, onRemoveItem}) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -18,12 +23,15 @@ const ListItem = ({item, editMode, onRemoveItem}) => {
   const fadeAnimItem = useRef(new Animated.Value(1)).current;
   const heightAnimItem = useRef(new Animated.Value(scale(79))).current;
 
-  const DURATION = 500;
-  const NATIVE_DRIVER = false;
-
   const {market_data, symbol, slug} = item || {};
   const {percent_change_btc_last_24_hours, price_usd} = market_data || {};
 
+  /**
+   *
+   * @param {Object} item - An item that shoul be removed!
+   * here we create a simple animation for removing the item
+   * before removing it from the redux.
+   */
   const onRemove = item => {
     Animated.parallel([
       Animated.timing(heightAnimItem, {
@@ -42,6 +50,10 @@ const ListItem = ({item, editMode, onRemoveItem}) => {
     }, DURATION + 50);
   };
 
+  /**
+   * by Changing the editMode, an animation will play
+   * to showing/hiding the trash icon
+   */
   useEffect(() => {
     switch (editMode) {
       case true:
@@ -88,7 +100,7 @@ const ListItem = ({item, editMode, onRemoveItem}) => {
         <Image
           style={styles.logo}
           source={{
-            uri: `https://cryptoicons.org/api/icon/${symbol.toLowerCase()}/200`,
+            uri: `${ICON_API}${symbol.toLowerCase()}/200`,
             cache: 'force-cache',
           }}
         />
@@ -144,6 +156,12 @@ const ListItem = ({item, editMode, onRemoveItem}) => {
   );
 };
 export default ListItem;
+
+ListItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  editMode: PropTypes.bool,
+  onRemoveItem: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -5,17 +5,6 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers/root';
 import {createStore, applyMiddleware} from 'redux';
 
-const MIGRATION_DEBUG = true;
-
-const migrations = {
-  17: previousVersionState => ({
-    ...previousVersionState,
-    raaivanVersion: {
-      lastUpdate: JSON.stringify(new Date()),
-    },
-  }),
-};
-
 const persistConfig = {
   key: '1',
   version: 1,

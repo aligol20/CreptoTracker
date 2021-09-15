@@ -1,7 +1,7 @@
-import {BTC_API, SINGLE_CURRENCY_API} from 'src/consts/api';
-import cryptoListRequest from 'src/services/apiRequests/cryptoListRequest';
+import {SINGLE_CURRENCY_API} from 'src/consts/api';
 import getCryptoRequest from 'src/services/apiRequests/getCryptoRequest';
 import {cryptoSlice} from '../reducers/cryptoReducer';
+import PropTypes from 'prop-types';
 
 const {selectedCryptoList, requestStarted, requestFinished} =
   cryptoSlice.actions;
